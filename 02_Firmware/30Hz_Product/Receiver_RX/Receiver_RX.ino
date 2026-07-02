@@ -152,7 +152,7 @@ static void UpdateStatusLed() {
 }
 
 void setup() {
-  Serial.begin(2000000);
+  Serial0.begin(2000000);
   pinMode(STATUS_LED_PIN, OUTPUT);
   SetLed(false);
   InitEspNow();
@@ -161,7 +161,7 @@ void setup() {
 void loop() {
   SerialFrame frame;
   while (PopFrame(frame)) {
-    Serial.write((const uint8_t *)&frame, sizeof(frame));
+    Serial0.write((const uint8_t *)&frame, sizeof(frame));
   }
   UpdateStatusLed();
   delay(1);
