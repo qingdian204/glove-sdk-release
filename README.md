@@ -11,7 +11,7 @@
 | 左手手套 | 采集左手 IMU 数据 |
 | 右手手套 | 采集右手 IMU 数据 |
 | 无线接收器 | 接收无线数据并连接电脑 |
-| `glove-sdk` 程序 | 显示 MANO 手部可视化界面 |
+| `glove-sdk` 程序 | 显示 手部骨骼可视化界面 |
 
 推荐固件已经放在：
 
@@ -22,7 +22,7 @@
 软件主程序在：
 
 ```text
-01_MANO_Visualization_SDK/glove-sdk-release
+glove-sdk-release
 ```
 
 该文件夹包含可直接运行的 `glove-sdk` 程序，无需安装 Python。手部模型文件已内置，无需额外下载。电脑需要 NVIDIA GPU + CUDA 驱动，不支持纯 CPU 运行。
@@ -35,7 +35,7 @@
 4. 进入软件主程序目录：
 
 ```bash
-cd 01_MANO_Visualization_SDK/glove-sdk-release
+cd glove-sdk-release
 ```
 
 5. 根据下面命令启动 `glove-sdk` 可视化程序。
@@ -165,7 +165,7 @@ battery low, auto power off
 | COM34 打开后像乱码 | 正常。接收器输出的是 168 字节二进制帧，不是文本 |
 | 手套 USB 口有文本输出 | 正常。正式 30Hz 固件会保留 USB Text 调试输出 |
 | 磁校准时正常数据暂停 | 正常。校准期间手套会暂停正常回传，保存后恢复 |
-| 找不到校准文件 | 需要先做首次 IMU/MANO 校准 |
+| 找不到校准文件 | 需要先做首次 IMU/骨骼校准 |
 | 串口 Permission denied | Linux 下需要加入 `dialout` 用户组后重新登录 |
 | 没有 GPU 无法启动 | 当前软件主程序需要 NVIDIA GPU + CUDA 驱动 |
 
