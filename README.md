@@ -169,7 +169,36 @@ battery low, auto power off
 | 串口 Permission denied | Linux 下需要加入 `dialout` 用户组后重新登录 |
 | 没有 GPU 无法启动 | 当前软件主程序需要 NVIDIA GPU + CUDA 驱动 |
 
-## 8. 不建议用户操作的内容
+
+## 8. 固件编译说明（开发者参考）
+
+如需重新编译固件，请注意以下关键要求：
+
+### 编译环境
+
+- Arduino CLI 或 Arduino IDE 2.x
+- ESP32 开发板支持包（esp32:esp32）
+
+### 关键编译参数
+
+所有 ESP32-S3 固件（手套和接收器）编译时 **必须** 添加 `CDCOnBoot=cdc` 参数，否则固件无法正常启动。
+
+arduino-cli 编译命令示例：
+
+```bash
+# 手套固件（左手）
+arduino-cli compile --fqbn esp32:esp32:esp32s3:CDCOnBoot=cdc 02_Firmware/30Hz_Product/LeftHand_TX_USB30
+
+# 接收器固件
+arduino-cli compile --fqbn esp32:esp32:esp32s3:CDCOnBoot=cdc 02_Firmware/30Hz_Product/Receiver_RX
+```
+
+### 接收器串口说明
+
+接收器固件使用 `Serial0`（UART0 硬件串口）输出 2Mbps 二进制帧数据，而非 `Serial`（USB CDC）。
+这是因为 ESP32-S3 的 `Serial` 默认映射到 USB CDC，不映射到 UART0 硬件引脚。
+
+## 9. 不建议用户操作的内容
 
 - 不要随意烧录 SDK 原始目录里的旧版示例固件。
 - 不要删除校准生成的 `.npy` 文件。
